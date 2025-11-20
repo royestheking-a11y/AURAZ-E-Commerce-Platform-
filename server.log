@@ -1,0 +1,84 @@
+
+🚀 Starting AURAZ E-Commerce Server...
+
+🔄 Connecting to MongoDB...
+✅ Connected to MongoDB: auraz_ecommerce
+✅ MongoDB connection verified
+
+✅ Server running on http://localhost:3001
+📡 API routes available at http://localhost:3001/api/*
+💚 Server is ready!
+
+📋 Available endpoints:
+   - GET  /api/ping
+   - GET  /api/test-connection
+   - GET  /api/products
+   - GET  /api/users
+   - GET  /api/orders
+   - GET  /api/carousel
+   - GET  /api/vouchers
+   - GET  /api/promo-cards
+   - GET  /api/payments
+   - GET  /api/refunds
+   - GET  /api/notifications
+   - GET  /api/reviews
+   - GET  /api/conversations
+   - GET  /api/settings
+   - GET  /api/wishlist
+
+GET /api/ping
+GET /api/ping
+GET /api/products
+GET /api/test-connection
+GET /api/products
+GET /api/users
+GET /api/orders
+GET /api/carousel
+GET /api/vouchers
+GET /api/promo-cards
+GET /api/payments
+GET /api/refunds
+GET /api/notifications
+GET /api/reviews
+GET /api/conversations
+GET /api/settings
+GET /api/products
+POST /api/migrate
+GET /api/products
+GET /api/carousel
+GET /api/users
+GET /api/orders
+GET /api/vouchers
+🔄 Starting data migration to MongoDB...
+GET /api/promo-cards
+GET /api/payments
+GET /api/refunds
+GET /api/notifications
+GET /api/reviews
+✅ Migrated 5 users
+GET /api/settings
+GET /api/conversations
+✅ Migrated 71 products
+✅ Migrated 7 orders
+✅ Migrated 4 carousel slides
+✅ Migrated 15 vouchers
+✅ Migrated 4 promo cards
+✅ Migrated 5 notifications
+✅ Migrated 8 reviews
+✅ Migrated delivery settings
+✅ Migration completed successfully!
+GET /api/products
+POST /api/migrate
+🔄 Starting data migration to MongoDB...
+✅ Migrated 5 users
+✅ Migrated 71 products
+✅ Migrated 7 orders
+✅ Migrated 4 carousel slides
+✅ Migrated 15 vouchers
+✅ Migrated 4 promo cards
+✅ Migrated 5 notifications
+✅ Migrated 8 reviews
+✅ Migrated delivery settings
+✅ Migration completed successfully!
+GET /api/products
+HEAD /api/products
