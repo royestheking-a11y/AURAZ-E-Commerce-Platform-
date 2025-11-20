@@ -1,4 +1,4 @@
-import { getDatabase } from './mongodb';
+import { getDatabase } from '../lib/mongodb';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export const config = {

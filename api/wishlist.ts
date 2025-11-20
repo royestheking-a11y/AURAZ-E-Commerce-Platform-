@@ -1,4 +1,4 @@
-import { getDatabase } from './mongodb';
+import { getDatabase } from '../lib/mongodb';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export const config = {
@@ -11,7 +11,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const collection = db.collection('user_wishlists');
 
     switch (req.method) {
-      case 'GET':
+      case 'GET': {
         if (!req.query.userId) {
           return res.status(400).json({ success: false, error: 'userId is required' });
         }
@@ -20,17 +20,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         let wishlist = await collection.findOne({ userId });
 
         if (!wishlist) {
-          wishlist = {
+          const newWishlist = {
             userId: userId as string,
-            products: [],
+            products: [] as string[],
             updatedAt: new Date().toISOString()
           };
-          await collection.insertOne(wishlist);
+          await collection.insertOne(newWishlist);
+          wishlist = await collection.findOne({ userId });
         }
 
         return res.json({ success: true, data: wishlist });
+      }
 
-      case 'POST':
+      case 'POST': {
         const { userId, productId } = req.body;
 
         if (!userId || !productId) {
@@ -45,8 +47,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         const updatedWishlist = await collection.findOne({ userId });
         return res.json({ success: true, data: updatedWishlist });
+      }
 
-      case 'DELETE':
+      case 'DELETE': {
         const deleteUserId = Array.isArray(req.query.userId) ? req.query.userId[0] : req.query.userId;
         const deleteProductId = Array.isArray(req.query.productId) ? req.query.productId[0] : req.query.productId;
 
@@ -61,6 +64,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
         const wishlistAfterDelete = await collection.findOne({ userId: deleteUserId });
         return res.json({ success: true, data: wishlistAfterDelete });
+      }
 
       default:
         return res.status(405).json({ success: false, error: 'Method not allowed' });
