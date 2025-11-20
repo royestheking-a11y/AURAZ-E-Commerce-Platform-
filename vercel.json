@@ -30,6 +30,14 @@
       "destination": "/api/promotions"
     },
     {
+      "source": "/api/payments",
+      "destination": "/api/transactions"
+    },
+    {
+      "source": "/api/refunds",
+      "destination": "/api/transactions"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },
