@@ -2,7 +2,7 @@ import { getDatabase } from './mongodb';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 export const config = {
-  runtime: 'nodejs18.x',
+  runtime: 'nodejs',
 };
 
 // Import default data (we'll need to pass it from the client)
