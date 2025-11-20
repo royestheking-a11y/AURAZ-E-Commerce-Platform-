@@ -6,6 +6,22 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/api/ping",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api/test-connection",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/api/migrate",
+      "destination": "/api/data"
+    },
+    {
+      "source": "/api/init-data",
+      "destination": "/api/data"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/$1"
     },

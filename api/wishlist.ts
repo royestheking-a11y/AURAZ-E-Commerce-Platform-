@@ -16,11 +16,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           return res.status(400).json({ success: false, error: 'userId is required' });
         }
 
-        let wishlist = await collection.findOne({ userId: req.query.userId });
+        const userId = Array.isArray(req.query.userId) ? req.query.userId[0] : req.query.userId;
+        let wishlist = await collection.findOne({ userId });
 
         if (!wishlist) {
           wishlist = {
-            userId: req.query.userId,
+            userId: userId as string,
             products: [],
             updatedAt: new Date().toISOString()
           };
@@ -46,16 +47,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         return res.json({ success: true, data: updatedWishlist });
 
       case 'DELETE':
-        const deleteUserId = req.query.userId;
-        const deleteProductId = req.query.productId;
+        const deleteUserId = Array.isArray(req.query.userId) ? req.query.userId[0] : req.query.userId;
+        const deleteProductId = Array.isArray(req.query.productId) ? req.query.productId[0] : req.query.productId;
 
         if (!deleteUserId || !deleteProductId) {
           return res.status(400).json({ success: false, error: 'userId and productId are required' });
         }
 
         await collection.updateOne(
-          { userId: deleteUserId },
-          { $pull: { products: deleteProductId }, $set: { updatedAt: new Date().toISOString() } }
+          { userId: deleteUserId as string },
+          { $pull: { products: deleteProductId as string }, $set: { updatedAt: new Date().toISOString() } }
         );
 
         const wishlistAfterDelete = await collection.findOne({ userId: deleteUserId });
